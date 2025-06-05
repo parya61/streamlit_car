@@ -1,0 +1,22 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+
+# Данные и модели
+*.pkl
+*.joblib
+*.csv
+*.json
+
+# Системные файлы
+.DS_Store
+.idea/
+.vscode/
+
+# Streamlit
+.streamlit/
