@@ -76,7 +76,7 @@ with st.form("car_form"):
         encoded_seller = label_encoders['seller_type'].transform([seller_type])[0]
         encoded_trans = label_encoders['transmission'].transform([transmission])[0]
         encoded_owner = label_encoders['owner'].transform([owner])[0]
-
+        
         # Преобразование ввода в формат модели
         input_data = pd.DataFrame({
             'year': [year],
