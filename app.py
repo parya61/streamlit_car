@@ -38,7 +38,7 @@ with st.form("car_form"):
     fuel = st.selectbox("Тип топлива", ["Diesel", "Petrol", "CNG"])
     seller_type = st.selectbox("Тип продавца", ["Individual", "Dealer", "Trustmark Dealer"])
     transmission = st.selectbox("Коробка передач", ["Manual", "Automatic"])
-    owner = st.selectbox("Владелецев", ["Один владелец", "Second Owner", "Third Owner"])
+    owner = st.selectbox("Владелецев", ["First Owner", "Second Owner", "Third Owner"])
     
     submitted = st.form_submit_button("Предсказать цену")
     
