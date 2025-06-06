@@ -67,10 +67,10 @@ with st.form("car_form"):
     
     if submitted:
         # Кодируем категориальные признаки
-        encoded_fuel = label_encoders['fuel'].transform([fuel])[0]
-        encoded_seller = label_encoders['seller_type'].transform([seller_type])[0]
-        encoded_trans = label_encoders['transmission'].transform([transmission])[0]
-        encoded_owner = label_encoders['owner'].transform([owner])[0]
+        fuel = RU['Топливо'][fuel_ru]
+        seller_type = RU['Продавец'][seller_ru]
+        transmission = RU['КПП'][trans_ru]
+        owner = RU['Владельцы'][owner_ru]
 
         # Преобразование ввода в формат модели
         input_data = pd.DataFrame({
