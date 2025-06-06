@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 
 # Загрузка моделей и фичей  
-model = joblib.load('../models/car_price_model.pkl')
+model = joblib.load('/models/car_price_model.pkl')
 with open('../models/feature_list.txt', 'r') as f:
     feature_list = f.read().split(',')
 
