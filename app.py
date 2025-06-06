@@ -76,7 +76,7 @@ with st.form("car_form"):
         encoded_seller = label_encoders['seller_type'].transform([seller_type])[0]
         encoded_trans = label_encoders['transmission'].transform([transmission])[0]
         encoded_owner = label_encoders['owner'].transform([owner])[0]
-        
+
         # Преобразование ввода в формат модели
         input_data = pd.DataFrame({
             'year': [year],
@@ -96,17 +96,18 @@ with st.form("car_form"):
         try:
             # Предсказание
             prediction = model.predict(input_data)[0]
-            st.success(f"Предсказанная цена: ₹{prediction:,.2f}")
+            rub = prediction * 0.9
+            st.success(f"Предсказанная цена: {rub:,.0f} руб.")
 
-            # Визуализация
-            st.subheader("Влияние параметров на цену")
-            fig, ax = plt.subplots()
-            features = ['year', 'mileage', 'engine_size', 'horsepower']
-            importances = model.feature_importances_
-            indices = np.argsort(importances)[-4:]
-            plt.barh(range(len(indices)), importances[indices], align='center')
-            plt.yticks(range(len(indices)), [feature_list[i] for i in indices])
-            st.pyplot(fig)
+            # Визуализация аа
+            # st.subheader("Влияние параметров на цену")
+            # fig, ax = plt.subplots()
+            # features = ['year', 'mileage', 'engine_size', 'horsepower']
+            # importances = model.feature_importances_
+            # indices = np.argsort(importances)[-4:]
+            # plt.barh(range(len(indices)), importances[indices], align='center')
+            # plt.yticks(range(len(indices)), [feature_list[i] for i in indices])
+            # st.pyplot(fig)
         except Exception as e:
             st.error(f"Ошибка предсказания: {str(e)}")
             st.write("Ожидаемые признаки:", feature_list)
