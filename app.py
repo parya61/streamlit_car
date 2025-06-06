@@ -5,18 +5,13 @@ import joblib
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder  
 from pathlib import Path
-import os
 
-
-st.write("Текущая директория:", os.getcwd())
-st.write("Содержимое папки:", os.listdir('.'))
-st.write("Содержимое models/:", os.listdir('models'))
 # Путь к модели (поднимаемся на)
 model_path = 'models/car_price_model.pkl'
 model = joblib.load(model_path)
 
 # Путь к feature_list
-feature_path = Path(__file__).parent.parent / 'models' / 'feature_list.txt'
+feature_path = 'models/feature_list.txt'
 with open(feature_path, 'r') as f:
     feature_list = f.read().split(',')
 
@@ -28,7 +23,7 @@ label_encoders = {
     'owner': LabelEncoder().fit(["First Owner", "Second Owner", "Third Owner"])
 }
 
-st.title('🚗 Предсказание стоимости автомобиля')
+st.title('Предсказание стоимости автомобиля')
 
 # Форма для ввода данных
 with st.form("car_form"):
@@ -36,14 +31,14 @@ with st.form("car_form"):
     year = st.slider("Год выпуска", 1990, 2023, 2018)
     km_driven = st.number_input("Пробег (км)", 0, 500000, 50000)
     engine = st.number_input("Объем двигателя (cc)", 500, 5000, 1500)
-    max_power = st.number_input("Мощность (bhp)", 50, 500, 100)
-    mileage = st.number_input("Пробег (kmpl)", 5, 50, 20)
+    max_power = st.number_input("Мощность (лошадиные силы)", 50, 500, 100)
+    mileage = st.number_input("Расход топлива (км/л)", 5, 50, 20)
     seats = st.number_input("Количество мест", 2, 10, 5)
     # Категориальные признаки
-    fuel = st.selectbox("Топливо", ["Diesel", "Petrol", "CNG"])
+    fuel = st.selectbox("Тип топлива", ["Diesel", "Petrol", "CNG"])
     seller_type = st.selectbox("Тип продавца", ["Individual", "Dealer", "Trustmark Dealer"])
     transmission = st.selectbox("Коробка передач", ["Manual", "Automatic"])
-    owner = st.selectbox("Владелец", ["First Owner", "Second Owner", "Third Owner"])
+    owner = st.selectbox("Владелецев", ["Один владелец", "Second Owner", "Third Owner"])
     
     submitted = st.form_submit_button("Предсказать цену")
     
