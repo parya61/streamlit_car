@@ -1,0 +1,35 @@
+# Виртуальное окружение
+venv/
+.env/
+.env*/
+*.env
+venv*/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+.python-version
+
+# Файлы IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Логи и системные файлы
+*.log
+*.sqlite3
+
+# Файлы зависимостей
+pip-selfcheck.json
+# Модели больших размеров (если не используете git-lfs)
+models/*.pkl
+models/*.h5
+models/*.bin
+
+# Конфигурационные файлы с секретами
+secrets.toml
+.streamlit/config.toml
+
+# Кэш Streamlit
+.streamlit/cache/
