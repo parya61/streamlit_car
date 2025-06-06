@@ -3,11 +3,16 @@ import pandas as pd
 import numpy as np
 import joblib
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder  
+from pathlib import Path
 
-# Загрузка моделей и фичей  
-model = joblib.load('models/car_price_model.pkl')
-with open('models/feature_list.txt', 'r') as f:
+# Путь к модели (поднимаемся на уровень выше)
+model_path = Path(__file__).parent.parent / 'models' / 'car_price_model.pkl'
+model = joblib.load(model_path)
+
+# Путь к feature_list
+feature_path = Path(__file__).parent.parent / 'models' / 'feature_list.txt'
+with open(feature_path, 'r') as f:
     feature_list = f.read().split(',')
 
 # Инициализация кодировщиков
