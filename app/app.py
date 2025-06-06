@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder  
 from pathlib import Path
 
-# Путь к модели (поднимаемся на уровень выше)
+# Путь к модели (поднимаемся на)
 model_path = Path(__file__).parent.parent / 'models' / 'car_price_model.pkl'
 model = joblib.load(model_path)
 
