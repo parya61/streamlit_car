@@ -66,20 +66,25 @@ with st.form("car_form"):
     submitted = st.form_submit_button("Предсказать цену")
     
     if submitted:
-        # Кодируем категориальные признаки
+        # Конвертируем русские варианты в английские
         fuel = RU['Топливо'][fuel]
         seller_type = RU['Продавец'][seller_type]
         transmission = RU['КПП'][transmission]
         owner = RU['Владельцы'][owner]
+        # Кодируем категориальные признаки
+        encoded_fuel = label_encoders['fuel'].transform([fuel])[0]
+        encoded_seller = label_encoders['seller_type'].transform([seller_type])[0]
+        encoded_trans = label_encoders['transmission'].transform([transmission])[0]
+        encoded_owner = label_encoders['owner'].transform([owner])[0]
 
         # Преобразование ввода в формат модели
         input_data = pd.DataFrame({
             'year': [year],
             'km_driven': [km_driven],
-            'fuel': [fuel],
-            'seller_type': [seller_type],
-            'transmission': [transmission],
-            'owner': [owner],
+            'fuel': [encoded_fuel],
+            'seller_type': [encoded_seller],
+            'transmission': [encoded_trans],
+            'owner': [encoded_owner],
             'mileage': [mileage],
             'engine': [engine],
             'max_power': [max_power],
