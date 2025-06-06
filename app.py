@@ -15,6 +15,29 @@ feature_path = 'models/feature_list.txt'
 with open(feature_path, 'r') as f:
     feature_list = f.read().split(',')
 
+
+RU = {
+    'Топливо': {
+        'Дизель': 'Diesel',
+        'Бензин': 'Petrol',
+        'Газ': 'CNG'
+    },
+    'Продавец': {
+        'Частное лицо': 'Individual',
+        'Дилер': 'Dealer',
+        'Сертифицированный дилер': 'Trustmark Dealer'
+    },
+    'КПП': {
+        'Механика': 'Manual',
+        'Автомат': 'Automatic'
+    },
+    'Владельцы': {
+        'Первый': 'First Owner',
+        'Второй': 'Second Owner',
+        'Третий+': 'Third Owner'
+    }
+}
+
 # Инициализация кодировщиков
 label_encoders = {
     'fuel': LabelEncoder().fit(["Diesel", "Petrol", "CNG"]),
@@ -35,10 +58,10 @@ with st.form("car_form"):
     mileage = st.number_input("Расход топлива (км/л)", 5, 50, 20)
     seats = st.number_input("Количество мест", 2, 10, 5)
     # Категориальные признаки
-    fuel = st.selectbox("Тип топлива", ["Diesel", "Petrol", "CNG"])
-    seller_type = st.selectbox("Тип продавца", ["Individual", "Dealer", "Trustmark Dealer"])
-    transmission = st.selectbox("Коробка передач", ["Manual", "Automatic"])
-    owner = st.selectbox("Владелецев", ["First Owner", "Second Owner", "Third Owner"])
+    fuel = st.selectbox("Тип топлива", list(RU['Топливо'].keys()))
+    seller_type = st.selectbox("Тип продавца", list(RU['Продавец'].keys()))
+    transmission = st.selectbox("Коробка передач", list(RU['КПП'].keys()))
+    owner = st.selectbox("Количество владелецев", list(RU['Владельцы'].keys()))
     
     submitted = st.form_submit_button("Предсказать цену")
     
