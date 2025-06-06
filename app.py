@@ -5,9 +5,14 @@ import joblib
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder  
 from pathlib import Path
+import os
 
+
+st.write("Текущая директория:", os.getcwd())
+st.write("Содержимое папки:", os.listdir('.'))
+st.write("Содержимое models/:", os.listdir('models'))
 # Путь к модели (поднимаемся на)
-model_path = Path(__file__).parent.parent / 'models' / 'car_price_model.pkl'
+model_path = 'models/car_price_model.pkl'
 model = joblib.load(model_path)
 
 # Путь к feature_list
